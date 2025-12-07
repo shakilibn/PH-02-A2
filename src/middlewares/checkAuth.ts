@@ -12,8 +12,6 @@ const checkAuth = (...roles: string[]) => {
 
     const decoded = jwt.verify(token, config.jwtSecret as string) as JwtPayload;
 
-    console.log(roles, decoded);
-
     if (!roles.includes(decoded.role)) {
       throw new Error("Unauthorized");
     }

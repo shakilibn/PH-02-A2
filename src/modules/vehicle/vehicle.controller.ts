@@ -30,7 +30,59 @@ const getAllVehicles = async (req: Request, res: Response) => {
   }
 };
 
+const getSingleVehicle = async (req: Request, res: Response) => {
+  try {
+    const { data, message } = await vehicleServices.getSingleVehicle(
+      req.params.vehicleId as string
+    );
+
+    res.status(200).json({
+      success: true,
+      message,
+      data,
+    });
+  } catch (err: any) {
+    sendError(res, err);
+  }
+};
+
+const udpateVehicle = async (req: Request, res: Response) => {
+  try {
+    const { data, message } = await vehicleServices.updateVehicle(
+      req.params.vehicleId as string,
+      req.body
+    );
+
+    res.status(200).json({
+      success: true,
+      message,
+      data,
+    });
+  } catch (err: any) {
+    sendError(res, err);
+  }
+};
+
+const deleteVehicle = async (req: Request, res: Response) => {
+  try {
+    const { data, message } = await vehicleServices.deleteVehicle(
+      req.params.vehicleId as string
+    );
+
+    res.status(200).json({
+      success: true,
+      message,
+      data,
+    });
+  } catch (err: any) {
+    sendError(res, err);
+  }
+};
+
 export const vehicleControllers = {
   createVehicle,
   getAllVehicles,
+  getSingleVehicle,
+  udpateVehicle,
+  deleteVehicle,
 };
